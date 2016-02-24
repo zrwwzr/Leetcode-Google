@@ -36,6 +36,6 @@ int main(){
 	ZigzagIterator zi(nums);
 	while(zi.hasNext())
 		cout<<zi.next()<<" "; 
-	cout<<endl;
+	cout<<endl; 
 	return 0;
 }
