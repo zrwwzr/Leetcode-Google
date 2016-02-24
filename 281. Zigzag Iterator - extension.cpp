@@ -1,5 +1,5 @@
 class ZigzagIterator {
-public:
+public: 
 	ZigzagIterator(vector<vector<int>> &nums) {
 		for(int i = 0; i < nums.size(); ++i){
 			if(nums[i].size() == 0) continue; //skip empty arr
