@@ -1,22 +1,15 @@
 class Solution {
 public:
-    unordered_map<char, char> map = {{')', '('}, {'}', '{'}, {']', '['}};
-    inline bool left(const char &c){
-        return c == '(' || c == '{' || c == '[';
-    }
-    bool isValid(string s) {
-        const size_t n = s.length();
-        if(n == 0 || n % 2 != 0) return false;
-        vector<char> stack;
-        for(int i = 0; i < n; ++i){
-            if(left(s[i]))
-                stack.push_back(s[i]);
-            else{
-                if(stack.empty() || map[s[i]] != stack.back())
-                    return false;
-                stack.pop_back();
-            }
+    vector<int> plusOne(vector<int>& digits) {
+        const int n = digits.size();
+        int carry = 1, sum = 0;
+        for(int i = n - 1; i >= 0; --i){
+            sum = carry + (digits[i]);
+            digits[i] = sum % 10;
+            carry = sum / 10;
         }
-        return stack.empty();
+        if(carry > 0) 
+            digits.insert(digits.begin(), carry);
+        return digits;
     }
 };
