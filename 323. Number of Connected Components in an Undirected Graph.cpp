@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countComponents(int n, vector<pair<int, int>>& edges) {
-        unordered_map<int, vector<int>> graph;
+        vector<vector<int>> graph(n);
         for(int i = 0; i < edges.size(); ++i){
             graph[edges[i].first].push_back(edges[i].second);
             graph[edges[i].second].push_back(edges[i].first);
