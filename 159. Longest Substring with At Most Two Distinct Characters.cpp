@@ -1,7 +1,6 @@
 class Solution {
 public:
     int lengthOfLongestSubstringTwoDistinct(string s) {
-        if(s.length() <= 2) return s.length();
         int first = -1, second = -1, start = 0, max_len = 0;
         for(int i = 0; i < s.length(); ++i){
             if(first == -1 || s[i] == s[first])
