@@ -14,6 +14,6 @@ public:
     			}
     		}
     	}
-      return dp[1][n - 2];
+        return dp[1][n - 2];
     }
 };
