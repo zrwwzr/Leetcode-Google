@@ -19,8 +19,8 @@ public:
         int rtn = -1;
         if(map.count(key) != 0){
             rtn = map[key]->val;
-            dequeue(map[key]);
-            enqueue(new Node(key, rtn));
+            detach(map[key]);
+            attach(map[key]);
         }
         return rtn;
     }
@@ -36,8 +36,9 @@ public:
         }
         else{
             Node *cur = map[key];
-            dequeue(cur);
-            enqueue(new Node(key, value));
+            detach(cur);
+            cur->val = value;
+            attach(cur);
         }
     }
 private:
@@ -51,17 +52,23 @@ private:
     unordered_map<int, Node*> map;
     
     void enqueue(Node *node){
-        node->next = front->next;
-        front->next = node;
-        node->next->prev = node;
-        node->prev = front;
+        attach(node);
         //update size and map
         map[node->key] = node;
         sz++;
     }
+    void attach(Node *node){
+        node->next = front->next;
+        front->next = node;
+        node->next->prev = node;
+        node->prev = front;
+    }
+    void detach(Node *node){
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
     void dequeue(Node* deleted){
-        deleted->prev->next = deleted->next;
-        deleted->next->prev = deleted->prev;
+        detach(deleted);
         //update size and map
         map.erase(deleted->key);
         sz--;
